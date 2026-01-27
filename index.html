@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>職務経歴書 - 森谷 浩幸</title>
+    <style>
+        :root {
+            --primary-color: #24292e;
+            --secondary-color: #0366d6;
+            --text-color: #24292e;
+            --text-light: #586069;
+            --bg-color: #fff;
+            --sidebar-bg: #fafbfc;
+            --border-color: #e1e4e8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+        }
+
+        a {
+            color: var(--secondary-color);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .wrapper {
+            display: flex;
+            max-width: 1100px;
+            margin: 0 auto;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 320px;
+            padding: 40px 30px;
+            background-color: var(--sidebar-bg);
+            border-right: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border-color);
+        }
+
+        .profile-name {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .profile-name-en {
+            font-size: 0.95rem;
+            color: var(--text-light);
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 40px 50px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .intro {
+            color: var(--text-light);
+            margin-bottom: 30px;
+            line-height: 1.7;
+        }
+
+        h2 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-top: 35px;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        /* SNS */
+        .sns-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            list-style: none;
+        }
+
+        .sns-links li a {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .sns-links svg {
+            width: 18px;
+            height: 18px;
+            fill: var(--text-light);
+        }
+
+        /* Skills */
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            margin-bottom: 8px;
+            padding-left: 15px;
+            position: relative;
+        }
+
+        .skill-list li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--secondary-color);
+        }
+
+        /* Experience */
+        .job {
+            margin-bottom: 25px;
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+        }
+
+        .job-title {
+            font-weight: 600;
+        }
+
+        .job-period {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .job-description {
+            color: var(--text-color);
+            margin-top: 8px;
+            font-size: 0.95rem;
+        }
+
+        /* Speaking, OSS, Community */
+        .item-list {
+            list-style: none;
+        }
+
+        .item-list li {
+            margin-bottom: 8px;
+            padding-left: 15px;
+            position: relative;
+        }
+
+        .item-list li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--secondary-color);
+        }
+
+        /* Certifications */
+        .cert-list {
+            list-style: none;
+        }
+
+        .cert-list li {
+            margin-bottom: 8px;
+            padding-left: 15px;
+            position: relative;
+        }
+
+        .cert-list li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--secondary-color);
+        }
+
+        /* GitHub Stats */
+        .github-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .github-stats img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Responsive */
+        @media (max-width: 800px) {
+            .wrapper {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                padding: 30px 20px;
+            }
+
+            .profile-image {
+                width: 150px;
+                height: 150px;
+            }
+
+            .main-content {
+                padding: 30px 20px;
+            }
+
+            .job-header {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <img src="https://github.com/Gekko0114.png" alt="Profile" class="profile-image">
+            <h2 class="profile-name">森谷 浩幸</h2>
+            <p class="profile-name-en">Hiroyuki Moriya</p>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <h1>森谷 浩幸 / Hiroyuki Moriya</h1>
+            <p class="intro">データサイエンス、AI（機械学習）エンジニアリングを中心に、大規模ソフトウェア開発の領域で一気通貫したキャリアを形成してきました。「技術でビジネス課題を解く」ことを信条とし、戦略立案からパイプラインの安定稼働まで、プロダクトのフェーズに合わせた最適な技術選定を遂行可能です。</p>
+
+            <h2>SNS</h2>
+            <ul class="item-list">
+                <li><a href="https://github.com/Gekko0114" target="_blank">GitHub</a></li>
+                <li><a href="https://www.linkedin.com/in/hiroyuki-moriya-911402172/" target="_blank">LinkedIn</a></li>
+                <li><a href="https://x.com/Yamori_ds" target="_blank">X</a></li>
+                <li><a href="https://trends-ai.net/" target="_blank">個人ページ</a></li>
+                <li><a href="https://speakerdeck.com/gekko0114" target="_blank">SpeakerDeck</a></li>
+                <li><a href="https://note.com/moriya_gekko" target="_blank">note</a></li>
+                <li><a href="https://moriya.hatenadiary.com/" target="_blank">Blog</a></li>
+                <li><a href="https://zenn.dev/gekko0114" target="_blank">Zenn</a></li>
+                <li><a href="https://qiita.com/Gekko0114" target="_blank">Qiita</a></li>
+                <li><a href="mailto:moriya@trends-ai.net">Email</a></li>
+            </ul>
+
+            <h2>Skills</h2>
+            <ul class="skill-list">
+                <li>AI/ML Engineering: LLM, マルチモーダルモデル, NER, 音声解析</li>
+                <li>Data Science: 統計解析, ABテスト, レコメンドシステム, 検索アルゴリズム</li>
+                <li>Backend Development: Python, Go, Ruby on Rails, C#</li>
+                <li>Infrastructure: Kubernetes, Terraform, AWS, EKS</li>
+                <li>Data Engineering: Spark, ETLパイプライン, SQL</li>
+                <li>Frontend: TypeScript, JavaScript</li>
+            </ul>
+
+            <h2>Experience</h2>
+
+            <h3>株式会社IVRy - AI Engineer</h3>
+            <div class="job">
+                <div class="job-header">
+                    <span class="job-period">2024.08 - Present</span>
+                </div>
+                <div class="job-header">
+                    <span class="job-period">2024.01 - 2024.07（副業）</span>
+                </div>                
+                <p class="job-description">IVRyにAIエンジニアとして入社。LLM活用による音声解析プロダクト「IVRy Analytics」の構築を主導し、技術選定やETLパイプライン設計、非構造化データの解析自動化・可視化などを担当。</p>
+            </div>
+
+            <h3>Microsoft Development - Software Engineer</h3>
+            <div class="job">
+                <div class="job-header">
+                    <span class="job-period">2022.06 - 2024.07</span>
+                </div>
+                <p class="job-description">フルスタックエンジニアとして、MSN、Bing、Edgeを横断したUX改修や新規機能の導入において、海外チームと連携しながら企画・実装・ABテストを一貫して遂行。</p>
+            </div>
+
+            <h3>DMM.com - Group Leader, Data Scientist</h3>
+            <div class="job">
+                <div class="job-header">
+                    <span class="job-period">2020.02 - 2022.06</span>
+                </div>
+                <p class="job-description">DMM.comのデータサイエンス組織立ち上げ期に入社。データ分析、レコメンド・検索の機械学習による改善、キャンペーン提案〜実施などを担当。マネジメントも担当。</p>
+            </div>
+
+            <h3>中外製薬 - Data Scientist</h3>
+            <div class="job">
+                <div class="job-header">
+                    <span class="job-period">2018.10 - 2020.01</span>
+                </div>
+                <p class="job-description">市販後医薬品の安全性評価に従事。傾向スコア法等の統計解析と大規模レセプトデータ（RWD）の解析に取り組み、新たな安全性監視手法の検証を行った。</p>
+            </div>     
+
+            <h3>ビービット / トライディア - Data Scientist (Intern)</h3>
+            <div class="job">
+                <div class="job-header">
+                    <span class="job-period">2018.02 - 2018.09</span>
+                </div>
+                <p class="job-description">クライアント企業のデータ分析・機械学習の支援・コンサルテーションを担当。</p>
+            </div>
+
+            <h2>Speaking</h2>
+            <ul class="item-list">
+                <li>Datadog DASH 2025 - <a href="https://speakerdeck.com/ivry_presentationmaterials/datadog-dash-2025-llm-observability-for-reliability-and-stability" target="_blank">LLM Observability for Reliability &amp; Stability</a></li>
+                <li>Datadog Summit Tokyo 2025 - <a href="https://speakerdeck.com/ivry_presentationmaterials/llmpurodakutonoxin-lai-xing-woshang-geruniha-llm-observabilityniyoru-dui-hua-xing-yin-sheng-aiapurikesiyonnoan-ding-yun-yong" target="_blank">LLM Observabilityによる対話型音声AIアプリケーションの安定運用</a></li>
+                <li>Japan Datadog User Group #12 - <a href="https://speakerdeck.com/ivry_presentationmaterials/observability-for-llm-application-lifecycle" target="_blank">Observability for LLM Application lifecycle</a></li>
+                <li>Datadog セミナー - <a href="https://www.datadoghq.com/ja/event/casestudies-seminar202506/" target="_blank">米国開催イベント DASH 登壇の日本のお客様セッション</a></li>
+                <li>SRE NEXT 2025 - <a href="https://speakerdeck.com/ivry_presentationmaterials/dui-hua-xing-yin-sheng-aiapurikesiyonnoxin-lai-xing-xiang-shang-noqu-rizu-mi" target="_blank">対話型音声AIアプリケーションの信頼性向上の取り組み</a></li>                
+                <li>Wake Career - <a href="https://speakerdeck.com/gekko0114/llm-observabilityniyoru-dui-hua-xing-yin-sheng-aiapurikesiyonnoan-ding-yun-yong" target="_blank">LLM Observabilityによる対話型音声AIアプリケーションの安定運用</a></li>
+            </ul>
+
+            <h2>OSS</h2>
+            <ul class="item-list">
+                <li><a href="https://github.com/kubernetes-sigs/kube-scheduler-wasm-extension" target="_blank">kubernetes-sigs/kube-scheduler-wasm-extension</a> - Contributor</li>
+                <li><a href="https://github.com/kubernetes-sigs/scheduler-plugins" target="_blank">kubernetes-sigs/scheduler-plugins</a> - Contributor</li>
+                <li><a href="https://github.com/kubernetes-sigs/kueue" target="_blank">kubernetes-sigs/kueue</a> - Contributor</li>
+                <li><a href="https://github.com/kubernetes/kubernetes" target="_blank">kubernetes/kubernetes</a> - Contributor</li>
+                <li><a href="https://github.com/knative/serving" target="_blank">knative/serving</a> - Contributor</li>
+                <li><a href="https://github.com/youki-dev/youki" target="_blank">youki-dev/youki</a> - Contributor</li>
+            </ul>
+
+            <h2>Community</h2>
+            <ul class="item-list">
+                <li>SRE NEXT 2025 コアスタッフ</li>
+            </ul>
+
+            <h2>Certifications</h2>
+            <ul class="cert-list">
+                <li>Certified Kubernetes Administrator (CKA)</li>
+                <li>Certified Kubernetes Application Developer (CKAD)</li>
+                <li>統計検定準1級（2019年5月取得）</li>
+                <li>TOEIC 925点</li>
+                <li>AtCoder rate 1224 (Account: gekko)</li>
+            </ul>
+
+            <h2>Education</h2>
+            <ul class="item-list">
+                <li><strong>東京大学 修士課程 修了</strong>（2015.04 - 2017.03）- 神経回路形成のメカニズムを研究。co-first authorとして以下の論文をpublish：<a href="https://www.sciencedirect.com/science/article/pii/S0012160622000161" target="_blank">Endoplasmic reticulum proteins Meigo and Gp93 govern dendrite targeting by regulating Toll-6 localization (Developmental Biology, 2022)</a></li>
+                <li><strong>東京大学 卒業</strong>（2011.04 - 2015.03）- 2011年度入学式総代</li>
+            </ul>
+
+            <h2>GitHub Stats</h2>
+            <div class="github-stats">
+                <img src="https://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=Gekko0114&theme=default" alt="Top Languages by Repo">
+            </div>
+        </main>
+    </div>
+</body>
+</html>
