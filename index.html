@@ -1,380 +1,889 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>森谷 浩幸 / Hiroyuki Moriya</title>
-    <style>
-        :root {
-            --primary-color: #24292e;
-            --secondary-color: #0366d6;
-            --text-color: #24292e;
-            --text-light: #586069;
-            --bg-color: #fff;
-            --sidebar-bg: #fafbfc;
-            --border-color: #e1e4e8;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>森谷 浩幸 / Hiroyuki Moriya</title>
+<meta name="description" content="森谷 浩幸 / Hiroyuki Moriya — AI Engineer。ビジネス課題のヒアリングから技術選定・実装・本番運用まで。LLMプロダクト開発、LLM Observability、データ活用、Kubernetes OSS。">
+<meta property="og:title" content="森谷 浩幸 / Hiroyuki Moriya">
+<meta property="og:description" content="AI Engineer。要件のヒアリングから技術選定・実装・本番運用まで一貫して担当します。">
+<meta property="og:type" content="profile">
+<meta property="og:image" content="https://github.com/Gekko0114.png">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧑‍💻</text></svg>">
+<style>
+  :root {
+    --bg: #ffffff;
+    --bg-soft: #f6f7f9;
+    --sidebar-bg: #fafbfc;
+    --surface: #ffffff;
+    --text: #15181d;
+    --text-muted: #5b6472;
+    --text-faint: #8b95a3;
+    --border: #e3e6ea;
+    --border-strong: #cfd4db;
+    --accent: #2d5bd7;
+    --accent-soft: #eef2fd;
+    --shadow: 0 1px 2px rgba(16, 24, 40, .04), 0 8px 24px -12px rgba(16, 24, 40, .12);
+    --radius: 12px;
+  }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
-            font-size: 16px;
-            line-height: 1.6;
-            color: var(--text-color);
-            background-color: var(--bg-color);
-        }
+  html { -webkit-text-size-adjust: 100%; }
 
-        a {
-            color: var(--secondary-color);
-            text-decoration: none;
-        }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue",
+                 "Hiragino Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    font-size: 16px;
+    line-height: 1.75;
+    color: var(--text);
+    background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+  }
 
-        a:hover {
-            text-decoration: underline;
-        }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; text-underline-offset: 2px; }
 
-        .wrapper {
-            display: flex;
-            max-width: 1100px;
-            margin: 0 auto;
-            min-height: 100vh;
-        }
+  /* ---------- Shell ---------- */
+  .wrapper {
+    display: flex;
+    max-width: 1100px;
+    margin: 0 auto;
+    min-height: 100vh;
+  }
 
-        /* Sidebar */
-        .sidebar {
-            width: 320px;
-            padding: 40px 30px;
-            background-color: var(--sidebar-bg);
-            border-right: 1px solid var(--border-color);
-            text-align: center;
-        }
+  .sidebar {
+    width: 320px;
+    flex: 0 0 320px;
+    padding: 48px 30px;
+    background: var(--sidebar-bg);
+    border-right: 1px solid var(--border);
+    text-align: center;
+  }
 
-        .profile-image {
-            width: 200px;
-            height: 200px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            border: 1px solid var(--border-color);
-        }
+  .main-content {
+    flex: 1;
+    min-width: 0;
+    padding: 48px 50px 80px;
+  }
 
-        .profile-name {
-            font-size: 1.4rem;
-            font-weight: 600;
-            margin-bottom: 5px;
-        }
+  /* ---------- Sidebar ---------- */
+  .avatar {
+    width: 200px;
+    height: 200px;
+    max-width: 100%;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--bg-soft);
+    margin-bottom: 20px;
+  }
 
-        .profile-name-en {
-            font-size: 0.95rem;
-            color: var(--text-light);
-        }
+  .name {
+    font-size: 1.45rem;
+    font-weight: 700;
+    letter-spacing: -.01em;
+    line-height: 1.35;
+  }
 
-        /* Main Content */
-        .main-content {
-            flex: 1;
-            padding: 40px 50px;
-        }
+  .name-en {
+    color: var(--text-faint);
+    font-size: .92rem;
+    letter-spacing: .02em;
+    margin-top: 2px;
+  }
 
-        h1 {
-            font-size: 2rem;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
+  .role {
+    margin-top: 12px;
+    font-size: .92rem;
+    font-weight: 600;
+  }
 
-        .intro {
-            color: var(--text-light);
-            margin-bottom: 30px;
-            line-height: 1.7;
-        }
+  /* ---------- Sidebar links ---------- */
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 7px;
+    margin-top: 28px;
+    padding-top: 26px;
+    border-top: 1px solid var(--border);
+    list-style: none;
+  }
 
-        h2 {
-            font-size: 1.4rem;
-            font-weight: 600;
-            margin-top: 35px;
-            margin-bottom: 15px;
-            padding-bottom: 8px;
-            border-bottom: 1px solid var(--border-color);
-        }
+  .links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 11px 5px 9px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: var(--surface);
+    color: var(--text);
+    font-size: .84rem;
+    font-weight: 500;
+    transition: border-color .15s, background .15s;
+  }
 
-        h3 {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-top: 20px;
-            margin-bottom: 10px;
-        }
+  .links a:hover {
+    text-decoration: none;
+    border-color: var(--border-strong);
+    background: var(--bg-soft);
+  }
 
-        /* SNS */
-        .sns-links {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            list-style: none;
-        }
+  .links svg { width: 14px; height: 14px; fill: var(--text-muted); flex: 0 0 auto; }
 
-        .sns-links li a {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
+  .writing {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2px 12px;
+    margin-top: 16px;
+    list-style: none;
+  }
 
-        .sns-links svg {
-            width: 18px;
-            height: 18px;
-            fill: var(--text-light);
-        }
+  .writing a { color: var(--text-muted); font-size: .82rem; }
 
-        /* Skills */
-        .skill-list {
-            list-style: none;
-        }
+  /* ---------- Lead ---------- */
+  .lead {
+    font-size: 1.02rem;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
 
-        .skill-list li {
-            margin-bottom: 8px;
-            padding-left: 15px;
-            position: relative;
-        }
+  .lead-sub {
+    color: var(--text-muted);
+    font-size: .95rem;
+  }
 
-        .skill-list li::before {
-            content: "•";
-            position: absolute;
-            left: 0;
-            color: var(--secondary-color);
-        }
+  /* ---------- Sections ---------- */
+  section { margin-top: 44px; }
 
-        /* Experience */
-        .job {
-            margin-bottom: 25px;
-        }
+  .main-content > section:first-child { margin-top: 0; }
 
-        .job-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            flex-wrap: wrap;
-        }
+  h2 {
+    font-size: .8rem;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 22px;
+  }
 
-        .job-title {
-            font-weight: 600;
-        }
+  h2 .ja {
+    text-transform: none;
+    letter-spacing: .02em;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-left: 10px;
+  }
 
-        .job-period {
-            color: var(--text-light);
-            font-size: 0.9rem;
-        }
+  /* ---------- Offer cards (主役) ---------- */
+  .offer {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
 
-        .job-description {
-            color: var(--text-color);
-            margin-top: 8px;
-            font-size: 0.95rem;
-        }
+  .offer-card {
+    padding: 18px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+    box-shadow: var(--shadow);
+  }
 
-        /* Speaking, OSS, Community */
-        .item-list {
-            list-style: none;
-        }
+  .offer-card h3 { font-size: .95rem; font-weight: 700; margin-bottom: 7px; }
 
-        .item-list li {
-            margin-bottom: 8px;
-            padding-left: 15px;
-            position: relative;
-        }
+  .offer-card p { font-size: .88rem; line-height: 1.7; color: var(--text-muted); }
 
-        .item-list li::before {
-            content: "•";
-            position: absolute;
-            left: 0;
-            color: var(--secondary-color);
-        }
+  .offer-card .proof {
+    display: block;
+    margin-top: 9px;
+    font-size: .8rem;
+  }
 
-        /* Certifications */
-        .cert-list {
-            list-style: none;
-        }
+  /* ---------- Process ---------- */
+  .process { list-style: none; counter-reset: step; }
 
-        .cert-list li {
-            margin-bottom: 8px;
-            padding-left: 15px;
-            position: relative;
-        }
+  .process li {
+    position: relative;
+    padding: 0 0 18px 42px;
+    counter-increment: step;
+  }
 
-        .cert-list li::before {
-            content: "•";
-            position: absolute;
-            left: 0;
-            color: var(--secondary-color);
-        }
+  .process li:last-child { padding-bottom: 0; }
 
-        /* GitHub Stats */
-        .github-stats {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-top: 15px;
-        }
+  .process li::before {
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    top: 4px;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-size: .8rem;
+    font-weight: 700;
+    display: grid;
+    place-items: center;
+  }
 
-        .github-stats img {
-            max-width: 100%;
-            height: auto;
-        }
+  .process h3 { font-size: .95rem; font-weight: 700; }
 
-        /* Responsive */
-        @media (max-width: 800px) {
-            .wrapper {
-                flex-direction: column;
-            }
+  .process p { font-size: .9rem; color: var(--text-muted); margin-top: 2px; }
 
-            .sidebar {
-                width: 100%;
-                padding: 30px 20px;
-            }
+  .section-note {
+    font-size: .9rem;
+    color: var(--text-muted);
+    margin-top: -6px;
+    margin-bottom: 18px;
+  }
 
-            .profile-image {
-                width: 150px;
-                height: 150px;
-            }
+  /* ---------- Work cases ---------- */
+  .case {
+    padding: 20px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+    box-shadow: var(--shadow);
+    margin-bottom: 14px;
+  }
 
-            .main-content {
-                padding: 30px 20px;
-            }
+  .case:last-child { margin-bottom: 0; }
 
-            .job-header {
-                flex-direction: column;
-            }
-        }
-    </style>
+  .case-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 4px 10px;
+    margin-bottom: 10px;
+  }
+
+  .case-head h3 { font-size: 1.02rem; font-weight: 700; }
+
+  .case-head .where { color: var(--text-faint); font-size: .84rem; }
+
+  .case dl { display: grid; gap: 9px; }
+
+  .case dt {
+    font-size: .78rem;
+    font-weight: 700;
+    color: var(--text-faint);
+    letter-spacing: .04em;
+  }
+
+  .case dd { font-size: .9rem; color: var(--text-muted); }
+
+  /* ---------- Experience ---------- */
+  .job {
+    position: relative;
+    padding: 0 0 22px 24px;
+    border-left: 1px solid var(--border);
+  }
+
+  .job:last-child { border-left-color: transparent; padding-bottom: 0; }
+
+  .job::before {
+    content: "";
+    position: absolute;
+    left: -5px;
+    top: 9px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 2px solid var(--border-strong);
+  }
+
+  .job.current::before { background: var(--accent); border-color: var(--accent); }
+
+  .job-top {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 4px 10px;
+  }
+
+  .job-role { font-weight: 700; font-size: 1rem; }
+
+  .job-company { color: var(--text-muted); font-size: .93rem; }
+
+  .job-period {
+    margin-left: auto;
+    color: var(--text-faint);
+    font-size: .82rem;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+
+  .job p { margin-top: 6px; font-size: .91rem; color: var(--text-muted); }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 10px;
+    list-style: none;
+  }
+
+  .tags li {
+    font-size: .75rem;
+    font-weight: 500;
+    color: var(--accent);
+    background: var(--accent-soft);
+    border-radius: 5px;
+    padding: 2px 8px;
+  }
+
+  /* ---------- OSS ---------- */
+  .oss-item {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .oss-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+  .oss-item:first-child { padding-top: 0; }
+
+  .oss-repo {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: .88rem;
+    font-weight: 600;
+  }
+
+  .oss-repo .owner { color: var(--text-faint); font-weight: 400; }
+
+  .oss-item p { font-size: .9rem; color: var(--text-muted); margin-top: 4px; }
+
+  .prs { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 9px; list-style: none; }
+
+  .prs a {
+    display: inline-block;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: .76rem;
+    padding: 1px 7px;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    color: var(--text-muted);
+  }
+
+  .prs a:hover { text-decoration: none; border-color: var(--accent); color: var(--accent); }
+
+  /* ---------- Talks ---------- */
+  .talks { list-style: none; }
+
+  .talks li {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: .92rem;
+  }
+
+  .talks li:last-child { border-bottom: none; }
+
+  .talks .venue { flex: 0 0 200px; font-weight: 600; font-size: .87rem; }
+
+  .talks .title { flex: 1 1 220px; min-width: 0; }
+
+  /* ---------- Skills ---------- */
+  .skills { display: grid; gap: 14px; }
+
+  .skill-row {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 4px 16px;
+    align-items: start;
+  }
+
+  .skill-row dt {
+    font-size: .85rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    padding-top: 1px;
+  }
+
+  .skill-row dd { font-size: .92rem; }
+
+  /* ---------- Bottom columns ---------- */
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+
+  .plain { list-style: none; }
+
+  .plain li { font-size: .91rem; padding: 5px 0; }
+
+  .plain .meta { color: var(--text-faint); font-size: .84rem; }
+
+  .edu li { padding: 10px 0; }
+
+  .edu strong { font-weight: 700; }
+
+  .edu p { font-size: .88rem; color: var(--text-muted); margin-top: 2px; }
+
+  /* ---------- CTA ---------- */
+  .cta {
+    margin-top: 48px;
+    padding: 24px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--bg-soft);
+  }
+
+  .cta h2 { border-bottom: none; padding-bottom: 0; margin-bottom: 10px; }
+
+  .cta p { font-size: .93rem; color: var(--text-muted); }
+
+  .cta-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    background: var(--accent);
+    color: #fff;
+    font-size: .9rem;
+    font-weight: 600;
+  }
+
+  .btn:hover { text-decoration: none; opacity: .9; }
+
+  .btn.secondary {
+    background: var(--surface);
+    color: var(--text);
+    border: 1px solid var(--border-strong);
+  }
+
+  /* ---------- Footer ---------- */
+  footer {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 24px;
+    justify-content: space-between;
+    font-size: .83rem;
+    color: var(--text-faint);
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 1000px) {
+    .offer { grid-template-columns: 1fr; }
+    .cols { grid-template-columns: 1fr; gap: 36px; }
+    .skill-row { grid-template-columns: 1fr; }
+    .talks .venue { flex: 1 1 100%; }
+    .main-content { padding: 48px 34px 72px; }
+  }
+
+  @media (max-width: 800px) {
+    .wrapper { flex-direction: column; min-height: 0; }
+    .sidebar {
+      width: 100%;
+      flex: none;
+      padding: 36px 20px 30px;
+      border-right: none;
+      border-bottom: 1px solid var(--border);
+    }
+    .avatar { width: 150px; height: 150px; }
+    .main-content { padding: 32px 20px 64px; }
+  }
+
+  @media (max-width: 560px) {
+    .job-period { margin-left: 0; flex: 1 1 100%; }
+  }
+
+  @media print {
+    :root {
+      --bg: #fff; --surface: #fff; --bg-soft: #fff; --sidebar-bg: #fff;
+      --text: #000; --text-muted: #333; --text-faint: #666; --shadow: none;
+    }
+    body { font-size: 10.5pt; line-height: 1.55; }
+    .wrapper { max-width: none; min-height: 0; }
+    .sidebar { width: 200px; flex: 0 0 200px; padding: 0 24px 0 0; border-right: 1px solid #ccc; }
+    .avatar { width: 120px; height: 120px; }
+    .main-content { padding: 0 0 0 28px; }
+    section { margin-top: 20px; page-break-inside: avoid; }
+    .case, .offer-card, .cta { page-break-inside: avoid; }
+    a { color: #000; }
+  }
+</style>
 </head>
 <body>
-    <div class="wrapper">
-        <!-- Sidebar -->
-        <aside class="sidebar">
-            <img src="https://github.com/Gekko0114.png" alt="Profile" class="profile-image">
-            <h2 class="profile-name">森谷 浩幸</h2>
-            <p class="profile-name-en">Hiroyuki Moriya</p>
-        </aside>
+<div class="wrapper">
 
-        <!-- Main Content -->
-        <main class="main-content">
-            <h1>森谷 浩幸 / Hiroyuki Moriya</h1>
-            <p class="intro">データサイエンス、AI（機械学習）エンジニアリングを中心に、大規模ソフトウェア開発の領域で一気通貫したキャリアを形成してきました。「技術でビジネス課題を解く」ことを信条とし、プロダクトのフェーズに合わせた最適な技術選定を遂行可能です。</p>
+  <aside class="sidebar">
+    <img class="avatar" src="https://github.com/Gekko0114.png" alt="森谷 浩幸">
+    <h1 class="name">森谷 浩幸</h1>
+    <p class="name-en">Hiroyuki Moriya</p>
+    <p class="role">AI Engineer / Technical PdM</p>
 
-            <h2>SNS</h2>
-            <ul class="item-list">
-                <li><a href="https://github.com/Gekko0114" target="_blank">GitHub</a></li>
-                <li><a href="https://www.linkedin.com/in/hiroyuki-moriya-911402172/" target="_blank">LinkedIn</a></li>
-                <li><a href="https://x.com/Yamori_ds" target="_blank">X</a></li>
-                <li><a href="https://trends-ai.net/" target="_blank">個人ページ</a></li>
-                <li><a href="https://speakerdeck.com/gekko0114" target="_blank">SpeakerDeck</a></li>
-                <li><a href="https://note.com/moriya_gekko" target="_blank">note</a></li>
-                <li><a href="https://moriya.hatenadiary.com/" target="_blank">Blog</a></li>
-                <li><a href="https://zenn.dev/gekko0114" target="_blank">Zenn</a></li>
-                <li><a href="https://qiita.com/Gekko0114" target="_blank">Qiita</a></li>
-                <li><a href="mailto:moriya@trends-ai.net">Email</a></li>
-            </ul>
+    <ul class="links">
+      <li><a href="https://github.com/Gekko0114" target="_blank" rel="noopener">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.07-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.42 7.42 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A7.995 7.995 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+        GitHub</a></li>
+      <li><a href="https://www.linkedin.com/in/hiroyuki-moriya-911402172/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 0a1.75 1.75 0 1 0 0 3.5 1.75 1.75 0 0 0 0-3.5ZM5 5H2v11h3V5Zm2.5 0H7v11h3v-5.9c0-1.7 2.2-1.85 2.2 0V16H15V9.7C15 5.6 10.5 5.75 9.5 7.75L7.5 5Z"/></svg>
+        LinkedIn</a></li>
+      <li><a href="https://x.com/Yamori_ds" target="_blank" rel="noopener">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M12.6 0h2.45l-5.35 6.12L16 16h-5l-3.9-5.1L2.6 16H.15l5.7-6.52L0 0h5.13l3.6 4.76L12.6 0Zm-.86 14.5h1.36L4.3 1.42H2.85l8.89 13.08Z"/></svg>
+        X</a></li>
+      <li><a href="https://speakerdeck.com/gekko0114" target="_blank" rel="noopener">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1 1.5h14v9H1v-9Zm1.5 1.5v6h11v-6h-11ZM5.5 13h5v1.5h-5V13Z"/></svg>
+        SpeakerDeck</a></li>
+      <li><a href="https://trends-ai.net/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0ZM1.6 8c0-.65.1-1.27.28-1.85L5 9.3v1.2c0 .66.34 1.27.9 1.62l1.3.8v1.44A6.42 6.42 0 0 1 1.6 8Zm8.3 6.2v-.8c0-.5-.3-.96-.77-1.15l-1.6-.66V9.7h2.1c.5 0 .97-.26 1.24-.68l.5-.8 1.9.63A6.41 6.41 0 0 1 9.9 14.2ZM12.9 4.1l-.6.95-2.6-.86a1.35 1.35 0 0 0-1.5.5l-.9 1.3h-2v-.8c0-.46.25-.88.65-1.1l1.4-.8.9.6.9-1.35-.75-.5A6.4 6.4 0 0 1 12.9 4.1Z"/></svg>
+        個人サイト</a></li>
+      <li><a href="mailto:moriya@trends-ai.net">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1 3h14v10H1V3Zm1.6 1.5L8 8.4l5.4-3.9H2.6ZM2.5 6v5.5h11V6L8 10 2.5 6Z"/></svg>
+        Email</a></li>
+    </ul>
 
-            <h2>Skills</h2>
-            <ul class="skill-list">
-                <li>AI/ML Engineering: LLM, マルチモーダルモデル, NER, 音声解析</li>
-                <li>Data Science: 統計解析, ABテスト, レコメンドシステム, 検索アルゴリズム</li>
-                <li>Backend Development: Python, Go, Ruby on Rails, C#</li>
-                <li>Infrastructure: Kubernetes, Terraform, AWS, EKS</li>
-                <li>Data Engineering: Spark, ETLパイプライン, SQL</li>
-                <li>Frontend: TypeScript, JavaScript</li>
-            </ul>
+    <ul class="writing">
+      <li><a href="https://zenn.dev/gekko0114" target="_blank" rel="noopener">Zenn</a></li>
+      <li><a href="https://qiita.com/Gekko0114" target="_blank" rel="noopener">Qiita</a></li>
+      <li><a href="https://note.com/moriya_gekko" target="_blank" rel="noopener">note</a></li>
+      <li><a href="https://moriya.hatenadiary.com/" target="_blank" rel="noopener">Blog</a></li>
+    </ul>
+  </aside>
 
-            <h2>Experience</h2>
+  <main class="main-content">
 
-            <h3>株式会社IVRy - AI Engineer</h3>
-            <div class="job">
-                <div class="job-header">
-                    <span class="job-period">2024.08 - Present</span>
-                </div>
-                <div class="job-header">
-                    <span class="job-period">2024.01 - 2024.07（副業）</span>
-                </div>                
-                <p class="job-description">IVRyにAIエンジニアとして入社。LLM活用による音声解析プロダクト「IVRy Analytics」の構築を主導し、技術選定やETLパイプライン設計、非構造化データの解析自動化・可視化などを担当。</p>
-            </div>
+    <section>
+      <h2>About <span class="ja">概要</span></h2>
+      <p class="lead">
+        ビジネス課題のヒアリングから、技術選定・設計・実装、本番運用までを一貫して担当します。
+      </p>
+      <p class="lead-sub">
+        AI をどこから導入するか整理する段階のご相談から、AI エージェントの設計・開発のような作り込みの必要な開発まで、規模や難易度を問わず対応しています。
+        データ分析・機械学習から、プロダクト開発、本番運用を支える基盤まで経験してきたので、必要に応じて領域をまたいで手を動かせます。
+      </p>
+    </section>
 
-            <h3>Microsoft Development - Software Engineer</h3>
-            <div class="job">
-                <div class="job-header">
-                    <span class="job-period">2022.06 - 2024.07</span>
-                </div>
-                <p class="job-description">フルスタックエンジニアとして、MSN、Bing、Edgeを横断したUX改修や新規機能の導入において、海外チームと連携しながら企画・実装・ABテストを一貫して遂行。</p>
-            </div>
+    <section>
+      <h2>Services <span class="ja">ご相談いただけること</span></h2>
+      <div class="offer">
+        <div class="offer-card">
+          <h3>LLMプロダクトの 0→1 開発</h3>
+          <p>要件のヒアリングから PoC、本番リリースまで。技術選定・アーキテクチャ設計・実装を担当します。商談に同席して顧客の要件を整理し、そのまま機能開発まで持っていく進め方にも対応できます。</p>
+          <a class="proof" href="#work">→ 携わった仕事を見る</a>
+        </div>
+        <div class="offer-card">
+          <h3>LLM の本番運用・信頼性設計</h3>
+          <p>LLM Observability の導入、評価と監視の設計、障害の検知と切り分けの仕組み作り。「作ったが安定して回らない」フェーズの課題に対応します。</p>
+          <a class="proof" href="#speaking">→ このテーマでの登壇実績</a>
+        </div>
+        <div class="offer-card">
+          <h3>データ活用・分析・レコメンド改善</h3>
+          <p>レコメンド・検索の機械学習による改善、ABテストの設計と効果検証、統計解析。既存事業の改善と、意思決定に使えるデータ基盤の整備まで。</p>
+        </div>
+        <div class="offer-card">
+          <h3>データ / AI関連の技術顧問</h3>
+          <p>何を内製し何を外に出すか、どの順で進めるかの判断。データサイエンス組織の立ち上げ期にリーダーを務めた経験をもとに、上流からの関与もできます。</p>
+        </div>
+      </div>
+    </section>
 
-            <h3>DMM.com - Group Leader, Data Scientist</h3>
-            <div class="job">
-                <div class="job-header">
-                    <span class="job-period">2020.02 - 2022.06</span>
-                </div>
-                <p class="job-description">DMM.comのデータサイエンス組織立ち上げ期に入社。データ分析、レコメンド・検索の機械学習による改善、キャンペーン提案〜実施などを担当。マネジメントも担当。</p>
-            </div>
+    <section>
+      <h2>Process <span class="ja">進め方</span></h2>
+      <ol class="process">
+        <li>
+          <h3>事業側と一緒に課題を定義する</h3>
+          <p>商談や現場に同席し、「何を解けば事業が前に進むのか」を事業側と同じ解像度まで持っていきます。技術の話はこの後です。</p>
+        </li>
+        <li>
+          <h3>最小の構成で先に検証する</h3>
+          <p>解くべき課題が定まったら、不確実性の高い部分だけを切り出して検証します。作り込む前に「そもそも解けるのか」を確かめます。</p>
+        </li>
+        <li>
+          <h3>本番に出す前提で作る</h3>
+          <p>プロダクトのフェーズに合わせて技術を選び、作り込む範囲と割り切る範囲を決めます。運用コストを後払いにしない構成を優先します。</p>
+        </li>
+        <li>
+          <h3>観測できる状態にして改善を回す</h3>
+          <p>リリース後に挙動を観測し、問題を切り分けられる状態を作ります。特に LLM は出力が揺れるため、ここを設計に含めます。</p>
+        </li>
+      </ol>
+    </section>
 
-            <h3>中外製薬 - Data Scientist</h3>
-            <div class="job">
-                <div class="job-header">
-                    <span class="job-period">2018.10 - 2020.01</span>
-                </div>
-                <p class="job-description">市販後医薬品の安全性評価に従事。傾向スコア法等の統計解析と大規模レセプトデータ（RWD）の解析に取り組み、新たな安全性監視手法の検証を行った。</p>
-            </div>     
+    <section id="work">
+      <h2>Selected Work <span class="ja">携わった仕事から抜粋</span></h2>
+      <p class="section-note">これまで携わってきた仕事のうち、公開できる範囲でいくつか紹介します。</p>
 
-            <h3>ビービット / トライディア - Data Scientist (Intern)</h3>
-            <div class="job">
-                <div class="job-header">
-                    <span class="job-period">2018.02 - 2018.09</span>
-                </div>
-                <p class="job-description">クライアント企業のデータ分析・機械学習の支援・コンサルテーションを担当。</p>
-            </div>
+      <div class="case">
+        <div class="case-head">
+          <h3>スタートアップのプロダクト支援</h3>
+          <span class="where">受託開発</span>
+        </div>
+        <dl>
+          <dt>役割</dt>
+          <dd>受託開発として、スタートアップのプロダクト開発を支援。AI OCR 機能の改善を担当しました。</dd>
+          <dt>成果</dt>
+          <dd>AI OCR の精度を 40% から 80% まで引き上げました。</dd>
+        </dl>
+      </div>
 
-            <h2>Speaking</h2>
-            <ul class="item-list">
-                <li>Datadog DASH 2025 - <a href="https://speakerdeck.com/ivry_presentationmaterials/datadog-dash-2025-llm-observability-for-reliability-and-stability" target="_blank">LLM Observability for Reliability &amp; Stability</a></li>
-                <li>Datadog Summit Tokyo 2025 - <a href="https://speakerdeck.com/ivry_presentationmaterials/llmpurodakutonoxin-lai-xing-woshang-geruniha-llm-observabilityniyoru-dui-hua-xing-yin-sheng-aiapurikesiyonnoan-ding-yun-yong" target="_blank">LLM Observabilityによる対話型音声AIアプリケーションの安定運用</a></li>
-                <li>Japan Datadog User Group #12 - <a href="https://speakerdeck.com/ivry_presentationmaterials/observability-for-llm-application-lifecycle" target="_blank">Observability for LLM Application lifecycle</a></li>
-                <li>Datadog セミナー - <a href="https://www.datadoghq.com/ja/event/casestudies-seminar202506/" target="_blank">米国開催イベント DASH 登壇の日本のお客様セッション</a></li>
-                <li>SRE NEXT 2025 - <a href="https://speakerdeck.com/ivry_presentationmaterials/dui-hua-xing-yin-sheng-aiapurikesiyonnoxin-lai-xing-xiang-shang-noqu-rizu-mi" target="_blank">対話型音声AIアプリケーションの信頼性向上の取り組み</a></li>                
-                <li>Wake Career - <a href="https://speakerdeck.com/gekko0114/llm-observabilityniyoru-dui-hua-xing-yin-sheng-aiapurikesiyonnoan-ding-yun-yong" target="_blank">LLM Observabilityによる対話型音声AIアプリケーションの安定運用</a></li>
-            </ul>
+      <div class="case">
+        <div class="case-head">
+          <h3>Data Hub</h3>
+          <span class="where">株式会社IVRy / 新規プロダクト</span>
+        </div>
+        <dl>
+          <dt>役割</dt>
+          <dd>商談への同席から要件整理、機能開発までを担当。顧客と商談の場で直接話を聞き、要件に落として、そのまま実装まで持っていきました。</dd>
+          <dt>この仕事の性質</dt>
+          <dd>新規プロダクトのため、決まった仕様を実装するのではなく「何を作るべきか」を顧客との対話から決める必要がある状態でした。事業側・顧客・実装の間を一人で行き来できることが要件そのものでした。</dd>
+        </dl>
+      </div>
 
-            <h2>OSS</h2>
-            <ul class="item-list">
-                <li><a href="https://github.com/kubernetes-sigs/kube-scheduler-wasm-extension" target="_blank">kubernetes-sigs/kube-scheduler-wasm-extension</a> - Contributor</li>
-                <li><a href="https://github.com/kubernetes-sigs/scheduler-plugins" target="_blank">kubernetes-sigs/scheduler-plugins</a> - Contributor</li>
-                <li><a href="https://github.com/kubernetes-sigs/kueue" target="_blank">kubernetes-sigs/kueue</a> - Contributor</li>
-                <li><a href="https://github.com/kubernetes/kubernetes" target="_blank">kubernetes/kubernetes</a> - Contributor</li>
-                <li><a href="https://github.com/knative/serving" target="_blank">knative/serving</a> - Contributor</li>
-                <li><a href="https://github.com/youki-dev/youki" target="_blank">youki-dev/youki</a> - Contributor</li>
-            </ul>
+      <div class="case">
+        <div class="case-head">
+          <h3>IVRy Analytics</h3>
+          <span class="where">株式会社IVRy / LLM活用の音声解析プロダクト</span>
+        </div>
+        <dl>
+          <dt>役割</dt>
+          <dd>プロダクトの構築を主導。技術選定、ETLパイプラインの設計、非構造化データの解析自動化と可視化を担当しました。</dd>
+          <dt>技術的な論点</dt>
+          <dd>電話の音声という欠損やノイズを含む非構造データを、事業判断に使える形まで加工する必要がありました。LLM の出力が揺れる前提で、解析の自動化と結果の検証可能性を両立させる構成を取っています。</dd>
+          <dt>運用</dt>
+          <dd>LLM Observability を導入し、対話型音声AIアプリケーションの安定運用に取り組みました。この知見は Datadog DASH 2025 や SRE NEXT 2025 で発表しています。</dd>
+        </dl>
+      </div>
+    </section>
 
-            <h2>Community</h2>
-            <ul class="item-list">
-                <li>SRE NEXT 2025 コアスタッフ</li>
-            </ul>
+    <section id="speaking">
+      <h2>Speaking <span class="ja">登壇</span></h2>
+      <ul class="talks">
+        <li>
+          <span class="venue">Datadog DASH 2025</span>
+          <span class="title"><a href="https://speakerdeck.com/ivry_presentationmaterials/datadog-dash-2025-llm-observability-for-reliability-and-stability" target="_blank" rel="noopener">LLM Observability for Reliability &amp; Stability</a></span>
+        </li>
+        <li>
+          <span class="venue">Datadog Summit Tokyo 2025</span>
+          <span class="title"><a href="https://speakerdeck.com/ivry_presentationmaterials/llmpurodakutonoxin-lai-xing-woshang-geruniha-llm-observabilityniyoru-dui-hua-xing-yin-sheng-aiapurikesiyonnoan-ding-yun-yong" target="_blank" rel="noopener">LLM Observabilityによる対話型音声AIアプリケーションの安定運用</a></span>
+        </li>
+        <li>
+          <span class="venue">SRE NEXT 2025</span>
+          <span class="title"><a href="https://speakerdeck.com/ivry_presentationmaterials/dui-hua-xing-yin-sheng-aiapurikesiyonnoxin-lai-xing-xiang-shang-noqu-rizu-mi" target="_blank" rel="noopener">対話型音声AIアプリケーションの信頼性向上の取り組み</a></span>
+        </li>
+        <li>
+          <span class="venue">Japan Datadog User Group #12</span>
+          <span class="title"><a href="https://speakerdeck.com/ivry_presentationmaterials/observability-for-llm-application-lifecycle" target="_blank" rel="noopener">Observability for LLM Application lifecycle</a></span>
+        </li>
+        <li>
+          <span class="venue">Datadog 事例セミナー</span>
+          <span class="title"><a href="https://www.datadoghq.com/ja/event/casestudies-seminar202506/" target="_blank" rel="noopener">米国開催イベント DASH 登壇の日本のお客様セッション</a></span>
+        </li>
+        <li>
+          <span class="venue">Wake Career</span>
+          <span class="title"><a href="https://speakerdeck.com/gekko0114/llm-observabilityniyoru-dui-hua-xing-yin-sheng-aiapurikesiyonnoan-ding-yun-yong" target="_blank" rel="noopener">LLM Observabilityによる対話型音声AIアプリケーションの安定運用</a></span>
+        </li>
+      </ul>
+    </section>
 
-            <h2>Certifications</h2>
-            <ul class="cert-list">
-                <li>Certified Kubernetes Administrator (CKA)</li>
-                <li>Certified Kubernetes Application Developer (CKAD)</li>
-                <li>統計検定準1級（2019年5月取得）</li>
-                <li>TOEIC 925点</li>
-                <li>AtCoder rate 1224 (Account: gekko)</li>
-            </ul>
+    <section>
+      <h2>Experience <span class="ja">職歴</span></h2>
 
-            <h2>Education</h2>
-            <ul class="item-list">
-                <li><strong>東京大学 修士課程 修了</strong>（2015.04 - 2017.03）- 神経回路形成のメカニズムを研究。co-first authorとして以下の論文をpublish：<a href="https://www.sciencedirect.com/science/article/pii/S0012160622000161" target="_blank">Endoplasmic reticulum proteins Meigo and Gp93 govern dendrite targeting by regulating Toll-6 localization (Developmental Biology, 2022)</a></li>
-                <li><strong>東京大学 卒業</strong>（2011.04 - 2015.03）- 2011年度入学式総代</li>
-            </ul>
+      <div class="job current">
+        <div class="job-top">
+          <span class="job-role">AI Engineer / Technical PdM</span>
+          <span class="job-company">株式会社IVRy</span>
+          <span class="job-period">2024.01 – 現在</span>
+        </div>
+        <p>2024年1月から副業として参画し、同年8月に正社員として入社。LLM活用の音声解析プロダクト「IVRy Analytics」の構築を主導し、新規プロダクト「Data Hub」では商談同席から要件整理・機能開発まで担当。</p>
+        <ul class="tags">
+          <li>LLM</li><li>音声解析</li><li>ETL</li><li>Python</li><li>LLM Observability</li><li>AWS</li>
+        </ul>
+      </div>
 
-            <h2>GitHub Stats</h2>
-            <div class="github-stats">
-                <img src="https://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=Gekko0114&theme=default" alt="Top Languages by Repo">
-            </div>
-        </main>
+      <div class="job">
+        <div class="job-top">
+          <span class="job-role">Software Engineer</span>
+          <span class="job-company">Microsoft Development</span>
+          <span class="job-period">2022.06 – 2024.07</span>
+        </div>
+        <p>MSN・Bing・Edge を横断する UX 改修と新規機能の導入を担当。海外チームと連携しながら、企画・実装・ABテストによる効果検証まで一貫して遂行。</p>
+        <ul class="tags">
+          <li>TypeScript</li><li>C#</li><li>ABテスト</li><li>フルスタック開発</li><li>グローバル協業</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="job-top">
+          <span class="job-role">Group Leader / Data Scientist</span>
+          <span class="job-company">DMM.com</span>
+          <span class="job-period">2020.02 – 2022.06</span>
+        </div>
+        <p>データサイエンス組織の立ち上げ期に入社。機械学習によるレコメンド・検索の改善、データ分析、キャンペーンの提案から実施までを担当し、グループリーダーとしてマネジメントにも従事。</p>
+        <ul class="tags">
+          <li>レコメンド</li><li>検索アルゴリズム</li><li>Spark</li><li>SQL</li><li>マネジメント</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="job-top">
+          <span class="job-role">Data Scientist</span>
+          <span class="job-company">中外製薬</span>
+          <span class="job-period">2018.10 – 2020.01</span>
+        </div>
+        <p>市販後医薬品の安全性評価に従事。傾向スコア法などの統計解析と大規模レセプトデータ（RWD）の解析により、新たな安全性監視手法の検証を実施。</p>
+        <ul class="tags">
+          <li>傾向スコア法</li><li>統計解析</li><li>RWD</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="job-top">
+          <span class="job-role">Data Scientist（インターン）</span>
+          <span class="job-company">ビービット / トライディア</span>
+          <span class="job-period">2018.02 – 2018.09</span>
+        </div>
+        <p>クライアント企業に対するデータ分析・機械学習の支援およびコンサルテーションを担当。</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Skills</h2>
+      <dl class="skills">
+        <div class="skill-row">
+          <dt>中心的に使ってきた技術</dt>
+          <dd>Python、LLM、LLM Observability、音声解析、ETL・データパイプライン、SQL、AWS</dd>
+        </div>
+        <div class="skill-row">
+          <dt>実務・OSS で書く言語</dt>
+          <dd>Go、Rust、TypeScript、C#、Ruby on Rails</dd>
+        </div>
+        <div class="skill-row">
+          <dt>基盤・分散処理</dt>
+          <dd>Kubernetes、Terraform、Spark</dd>
+        </div>
+        <div class="skill-row">
+          <dt>分析・手法</dt>
+          <dd>統計解析、ABテスト、レコメンドシステム、検索アルゴリズム、傾向スコア法、NER、マルチモーダルモデル</dd>
+        </div>
+      </dl>
+    </section>
+
+    <div class="cols">
+      <section>
+        <h2>Education</h2>
+        <ul class="plain edu">
+          <li>
+            <strong>東京大学 修士課程 修了</strong>
+            <span class="meta">2015.04 – 2017.03</span>
+            <p>神経回路形成のメカニズムを研究。co-first author として論文を publish：<a href="https://www.sciencedirect.com/science/article/pii/S0012160622000161" target="_blank" rel="noopener">Endoplasmic reticulum proteins Meigo and Gp93 govern dendrite targeting by regulating Toll-6 localization</a>（Developmental Biology, 2022）</p>
+          </li>
+          <li>
+            <strong>東京大学 卒業</strong>
+            <span class="meta">2011.04 – 2015.03</span>
+            <p>2011年度入学式 総代</p>
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Certifications &amp; Community</h2>
+        <ul class="plain">
+          <li>Certified Kubernetes Administrator（CKA）</li>
+          <li>Certified Kubernetes Application Developer（CKAD）</li>
+          <li>統計検定 準1級 <span class="meta">2019.05</span></li>
+          <li>TOEIC 925点</li>
+          <li>AtCoder rate 1224 <span class="meta">@gekko</span></li>
+          <li>SRE NEXT 2025 コアスタッフ</li>
+        </ul>
+      </section>
     </div>
+
+    <section>
+      <h2>Open Source</h2>
+
+      <div class="oss-item">
+        <div class="oss-repo"><span class="owner">kubernetes-sigs/</span>kueue</div>
+        <p>Workload Priority 機能の KEP（設計提案）を起案し、実装とドキュメントまで一貫して担当。Helm chart の整備やバリデーションの改善も行いました。</p>
+        <ul class="prs">
+          <li><a href="https://github.com/kubernetes-sigs/kueue/pull/1041" target="_blank" rel="noopener">#1041 KEP: workload priority</a></li>
+          <li><a href="https://github.com/kubernetes-sigs/kueue/pull/1081" target="_blank" rel="noopener">#1081 実装</a></li>
+          <li><a href="https://github.com/kubernetes-sigs/kueue/pull/1170" target="_blank" rel="noopener">#1170 docs</a></li>
+          <li><a href="https://github.com/kubernetes-sigs/kueue/pull/664" target="_blank" rel="noopener">#664 helm charts</a></li>
+        </ul>
+      </div>
+
+      <div class="oss-item">
+        <div class="oss-repo"><span class="owner">kubernetes/</span>kubernetes</div>
+        <p>スケジューラ本体へのコントリビュート。VolumeZone プラグインの QueueingHints 対応（PV / PVC / StorageClass）と統合テスト、スケジューリングフレームワークのプラグインクローズ対応を実装。</p>
+        <ul class="prs">
+          <li><a href="https://github.com/kubernetes/kubernetes/pull/122498" target="_blank" rel="noopener">#122498 framework plugin close</a></li>
+          <li><a href="https://github.com/kubernetes/kubernetes/pull/124996" target="_blank" rel="noopener">#124996 queueing hints</a></li>
+          <li><a href="https://github.com/kubernetes/kubernetes/pull/127353" target="_blank" rel="noopener">#127353 integration test</a></li>
+        </ul>
+      </div>
+
+      <div class="oss-item">
+        <div class="oss-repo"><span class="owner">kubernetes-sigs/</span>kube-scheduler-wasm-extension</div>
+        <p>WebAssembly でスケジューラプラグインを書ける仕組みに対し、プラグイン拡張点を広く実装。PreBind / Bind、Score Extensions、PostFilter、PostBind、EventRecorder、RejectWaitingPod などに対応。</p>
+        <ul class="prs">
+          <li><a href="https://github.com/kubernetes-sigs/kube-scheduler-wasm-extension/pull/76" target="_blank" rel="noopener">#76 scoreExtensions</a></li>
+          <li><a href="https://github.com/kubernetes-sigs/kube-scheduler-wasm-extension/pull/77" target="_blank" rel="noopener">#77 prebind / bind</a></li>
+          <li><a href="https://github.com/kubernetes-sigs/kube-scheduler-wasm-extension/pull/83" target="_blank" rel="noopener">#83 EventRecorder</a></li>
+          <li><a href="https://github.com/kubernetes-sigs/kube-scheduler-wasm-extension/pull/98" target="_blank" rel="noopener">#98 RejectWaitingPod</a></li>
+        </ul>
+      </div>
+
+      <div class="oss-item">
+        <div class="oss-repo"><span class="owner">youki-dev/</span>youki</div>
+        <p>Rust 製コンテナランタイムにおいて、SELinux サポートをプロジェクトの立ち上げから実装。xattr 周りの実装・修正や検証環境の整備まで担当。</p>
+        <ul class="prs">
+          <li><a href="https://github.com/youki-dev/youki/pull/2800" target="_blank" rel="noopener">#2800 init selinux project</a></li>
+          <li><a href="https://github.com/youki-dev/youki/pull/2850" target="_blank" rel="noopener">#2850 selinux functions</a></li>
+          <li><a href="https://github.com/youki-dev/youki/pull/2936" target="_blank" rel="noopener">#2936 xattr fix</a></li>
+        </ul>
+      </div>
+
+      <div class="oss-item">
+        <div class="oss-repo"><span class="owner">kubernetes-sigs/</span>scheduler-plugins</div>
+        <p>Coscheduling と CapacityScheduling（ElasticQuota）のバグ修正・テスト整備を中心にコントリビュート。</p>
+        <ul class="prs">
+          <li><a href="https://github.com/kubernetes-sigs/scheduler-plugins/pull/509" target="_blank" rel="noopener">#509 ElasticQuota fix</a></li>
+          <li><a href="https://github.com/kubernetes-sigs/scheduler-plugins/pull/520" target="_blank" rel="noopener">#520 default values fix</a></li>
+          <li><a href="https://github.com/kubernetes-sigs/scheduler-plugins/pull/574" target="_blank" rel="noopener">#574 Coscheduling</a></li>
+        </ul>
+      </div>
+
+      <div class="oss-item">
+        <div class="oss-repo"><span class="owner">knative/</span>serving</div>
+        <p>Activator の throttler において、同時実行数が1の場合にリクエストが全 Pod に送られてしまう問題を修正。</p>
+        <ul class="prs">
+          <li><a href="https://github.com/knative/serving/pull/14022" target="_blank" rel="noopener">#14022 throttler fix</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="cta">
+      <h2>Contact <span class="ja">ご相談について</span></h2>
+      <p>
+        業務委託として、LLMプロダクトの設計・実装、本番運用の信頼性設計、データ活用のご相談を受けています。
+        スポットでの技術相談から、実装を含む開発のご依頼まで対応可能です。まずはお気軽にご連絡ください。
+      </p>
+      <div class="cta-actions">
+        <a class="btn" href="mailto:moriya@trends-ai.net">moriya@trends-ai.net</a>
+        <a class="btn secondary" href="https://x.com/Yamori_ds" target="_blank" rel="noopener">X で連絡</a>
+        <a class="btn secondary" href="https://www.linkedin.com/in/hiroyuki-moriya-911402172/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+
+    <footer>
+      <span>森谷 浩幸 / Hiroyuki Moriya</span>
+      <span>Last updated: 2026.10</span>
+    </footer>
+
+  </main>
+</div>
 </body>
 </html>
